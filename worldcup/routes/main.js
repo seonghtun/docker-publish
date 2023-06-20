@@ -9,7 +9,7 @@ const app = express()
 app.use(morgan('dev'));
 
 var db;
-var databaseUrl = 'mongodb://54.180.186.96:27017';
+var databaseUrl = 'mongodb://192.168.1.17:27017';
 
 app.get('/', (req, res) => {
         res.sendFile(__dirname + './index.html');
@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 app.get('/worldcup', (req, res) => {
         console.log(mongoClient)
         mongoClient.connect(databaseUrl, function(err, database){
+		console.log('아');
                 if(err != null){
                         res.json({'count':0})
                         console.log(err);
@@ -45,8 +46,10 @@ app.get('/worldcup', (req, res) => {
                                         </tr>`;
                                 });
                                 template += `</table>`;
+				res.end(template);
                         });
                 }
+		console.log("맨팉 아");
         });
 });
 
